@@ -14,23 +14,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Zakaria Tetbirt | Full-Stack Developer & CS Student",
-  description: "Computer Science student at ESTIN and Full-Stack Developer. Building clean, scalable, and premium web experiences with Next.js, Supabase, and AI engineering.",
+  description: "Computer Science student at ESTIN and Full-Stack Developer building modern web applications with React, Next.js, Node.js, PostgreSQL, and Prisma.",
   keywords: [
     "Zakaria Tetbirt",
     "ESTIN",
-    "Algeria Developer",
     "Full-Stack Developer",
-    "AI Engineer",
+    "Computer Science Student",
+    "Web Developer",
+    "React Developer",
+    "Next.js",
+    "Node.js",
+    "PostgreSQL",
+    "Prisma",
     "Software Engineer",
-    "Next.js Portfolio",
-    "Saha-Event",
-    "Supabase Developer"
+    "Algeria"
   ],
   authors: [{ name: "Zakaria Tetbirt" }],
   creator: "Zakaria Tetbirt",
   openGraph: {
     title: "Zakaria Tetbirt | Full-Stack Developer & CS Student",
-    description: "Computer Science student at ESTIN and Full-Stack Developer. Specializing in building premium and scalable web solutions.",
+    description: "Computer Science student at ESTIN building modern web applications with React, Next.js, Node.js, and PostgreSQL.",
     url: "https://github.com/Zakaria-tet-cs",
     siteName: "Zakaria Tetbirt Portfolio",
     locale: "en_US",
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Zakaria Tetbirt | Full-Stack Developer & CS Student",
-    description: "Computer Science student at ESTIN and Full-Stack Developer. Specializing in building premium and scalable web solutions.",
+    description: "Computer Science student at ESTIN building modern web applications with React, Next.js, Node.js, and PostgreSQL.",
   },
   robots: {
     index: true,
@@ -61,7 +64,24 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </head>
-      <body className="min-h-full bg-navy-950 text-slate-100 flex flex-col">
+      <body className="min-h-full flex flex-col relative bg-noise">
+        {/* SVG Gooey Filter for Navbar Blobs */}
+        <svg style={{ position: 'absolute', width: 0, height: 0 }} aria-hidden="true">
+          <defs>
+            <filter id="gooey">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
+                result="gooey"
+              />
+              <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+            </filter>
+          </defs>
+        </svg>
+
+        <div className="aurora-bg"></div>
         {children}
       </body>
     </html>

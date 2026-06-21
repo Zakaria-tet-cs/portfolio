@@ -1,164 +1,279 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, ArrowDown } from "lucide-react";
-
-const Github = ({ className = "h-4 w-4" }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
+import { useState } from "react";
+import Link from "next/link";
+import { Code2, MapPin, GraduationCap, Mail } from "lucide-react";
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-  };
-
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const stats = [
+    { label: "Computer Science", sub: "Student @ ESTIN" },
+    { label: "Full-Stack", sub: "Developer" },
+    { label: "4+ Projects", sub: "Built" },
+    { label: "Continuous", sub: "Learner" },
+  ];
 
   return (
-    <section
-      id="top"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 grid-bg"
-    >
-      {/* Grid Dot Overlay */}
-      <div className="absolute inset-0 grid-dots opacity-40 pointer-events-none" />
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
 
-      {/* Decorative Glow Blobs */}
-      <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-accent-blue/10 blur-[100px] pointer-events-none animate-pulse duration-[6000ms]" />
-      <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full bg-accent-cyan/10 blur-[120px] pointer-events-none animate-pulse duration-[8000ms]" />
-
-      <div className="relative max-w-5xl mx-auto px-6 py-20 text-center z-10 flex flex-col items-center">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center"
-        >
-          {/* Tagline Pill */}
+          {/* Availability Badge */}
           <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-navy-900/60 border border-navy-800/80 text-accent-cyan text-xs font-semibold tracking-wider uppercase mb-6 shadow-sm shadow-cyan-950/20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card mb-8 border-[var(--color-brand-primary)]/30 text-sm font-medium shadow-[0_0_20px_rgba(124,58,237,0.15)]"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3ECF8E] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#3ECF8E]"></span>
             </span>
-            <span>Available for Internships & Projects</span>
+            <span style={{ color: "#9189A8" }}>Available for Internships and Collaborations</span>
           </motion.div>
 
-          {/* Heading */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 max-w-4xl"
+          {/* Name */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-6"
           >
-            Hi, I&apos;m{" "}
-            <span className="bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan bg-clip-text text-transparent drop-shadow-sm">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-[var(--color-brand-primary)]/80">
               Zakaria Tetbirt
-            </span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg sm:text-2xl font-semibold text-slate-300 mb-4 tracking-wide max-w-3xl"
-          >
-            Computer Science Student &bull; Full-Stack Developer &bull; AI Enthusiast
-          </motion.p>
-
-          {/* Bio sentence */}
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg text-slate-400 mb-10 max-w-2xl font-normal leading-relaxed"
-          >
-            Building clean, scalable, and premium web experiences. Specializing in next-gen software systems.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center gap-4 justify-center w-full sm:w-auto"
-          >
-            <a
-              href="#projects"
-              onClick={(e) => handleScrollTo(e, "#projects")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-accent-blue to-accent-cyan hover:from-accent-blue/90 hover:to-accent-cyan/90 text-white font-semibold shadow-md shadow-accent-blue/15 hover:shadow-lg hover:shadow-accent-blue/30 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
-            >
-              <span>View Projects</span>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-
-            <a
-              href="https://github.com/Zakaria-tet-cs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-navy-900/60 border border-navy-800/80 hover:border-accent-blue/40 text-slate-300 hover:text-white hover:bg-navy-850/80 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
-            >
-              <Github className="h-4 w-4" />
-              <span>GitHub</span>
-            </a>
-
-            <a
-              href="#contact"
-              onClick={(e) => handleScrollTo(e, "#contact")}
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-transparent border border-navy-800 hover:border-accent-cyan/40 text-slate-400 hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
-            >
-              <Mail className="h-4 w-4" />
-              <span>Contact</span>
-            </a>
+            </h1>
           </motion.div>
-        </motion.div>
+
+          {/* Title & Location Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="flex flex-wrap justify-center items-center gap-3 mb-8"
+          >
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 text-white/90 text-sm md:text-base font-medium">
+              <Code2 size={16} className="text-[var(--color-brand-primary)]" />
+              Full-Stack Developer
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 text-white/90 text-sm md:text-base font-medium">
+              <MapPin size={16} className="text-[var(--color-brand-secondary)]" />
+              Algeria
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 text-white/90 text-sm md:text-base font-medium">
+              <GraduationCap size={16} className="text-[var(--color-brand-primary)]" />
+              CS Student at ESTIN
+            </div>
+          </motion.div>
+
+          {/* Introduction */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg md:text-xl text-[var(--foreground)]/70 mb-6 max-w-2xl mx-auto leading-relaxed"
+          >
+            Developing modern full-stack applications with a focus on performance, scalability, and real-world impact.
+          </motion.p>
+
+          {/* Technology Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="flex flex-wrap justify-center items-center gap-2 mb-12 max-w-2xl mx-auto"
+          >
+            {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma"].map((tech) => (
+              <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-[var(--foreground)]/90 hover:border-[var(--color-brand-primary)]/40 hover:text-white transition-colors cursor-default">
+                {tech}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16"
+          >
+            <PrimaryButton href="#work">
+              View My Work <span className="font-mono tracking-tighter opacity-80 ml-1">{"</>"}</span>
+            </PrimaryButton>
+            <SecondaryButton href="#contact">
+              Contact Me <Mail size={16} className="ml-1 opacity-80" />
+            </SecondaryButton>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+          >
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center p-5 glass-card rounded-2xl hover:border-[var(--color-brand-primary)]/30 transition-all duration-300 group"
+              >
+                <span className="text-lg font-bold text-white mb-1 group-hover:text-[var(--color-brand-primary)] transition-colors">{stat.label}</span>
+                <span className="text-xs text-[var(--foreground)]/60 uppercase tracking-wider text-center">{stat.sub}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
-      {/* Floating Scroll Down Arrow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
-      >
-        <span className="text-xs font-mono tracking-widest text-slate-500 uppercase mb-2">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-4 w-4 text-slate-400" />
-        </motion.div>
-      </motion.div>
+      {/* Decorative gradient blob at the bottom of hero */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-32 bg-[var(--color-brand-primary)]/20 blur-[100px] rounded-full pointer-events-none"></div>
     </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SPARKLE ICON — four-pointed star
+───────────────────────────────────────────────────────────── */
+function SparkleIcon({ muted = false }: { muted?: boolean }) {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+      <path
+        d="M8 0 L9.2 6.8 L16 8 L9.2 9.2 L8 16 L6.8 9.2 L0 8 L6.8 6.8 Z"
+        fill={muted ? "rgba(124,58,237,0.55)" : "white"}
+      />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PRIMARY BUTTON — violet 3D glow pill
+───────────────────────────────────────────────────────────── */
+function PrimaryButton({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        padding: "3px",
+        borderRadius: "9999px",
+        background: "rgba(0,0,0,0.55)",
+        boxShadow: hovered
+          ? "0 0 0 1px rgba(124,58,237,0.5), 0 8px 60px 4px rgba(124,58,237,0.65), 0 2px 12px rgba(0,0,0,0.6)"
+          : "0 0 0 1px rgba(124,58,237,0.25), 0 6px 40px 2px rgba(124,58,237,0.45), 0 2px 10px rgba(0,0,0,0.5)",
+        transition: "box-shadow 0.25s ease",
+        maxWidth: "220px",
+        width: "100%",
+      }}
+    >
+      <Link
+        href={href}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          padding: "15px 32px",
+          borderRadius: "9999px",
+          background: hovered
+            ? "linear-gradient(135deg, #8B4FF0 0%, #7C3AED 100%)"
+            : "linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)",
+          color: "white",
+          fontWeight: 700,
+          fontSize: "15px",
+          letterSpacing: "-0.01em",
+          border: "1px solid rgba(255,255,255,0.12)",
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+          transition: "background 0.25s ease, transform 0.2s ease",
+          width: "100%",
+          whiteSpace: "nowrap",
+          textDecoration: "none",
+        }}
+      >
+        <span
+          style={{
+            display: "inline-flex",
+            transition: "transform 0.55s ease",
+            transform: hovered ? "rotate(22deg) scale(1.2)" : "rotate(0deg) scale(1)",
+          }}
+        >
+          <SparkleIcon />
+        </span>
+        {children}
+      </Link>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECONDARY BUTTON — dark 3D pill with subtle violet glow
+───────────────────────────────────────────────────────────── */
+function SecondaryButton({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        padding: "3px",
+        borderRadius: "9999px",
+        background: "rgba(0,0,0,0.55)",
+        boxShadow: hovered
+          ? "0 0 0 1px rgba(124,58,237,0.42), 0 6px 44px 2px rgba(124,58,237,0.3), 0 2px 10px rgba(0,0,0,0.5)"
+          : "0 0 0 1px rgba(124,58,237,0.1), 0 4px 18px 0px rgba(124,58,237,0.08), 0 2px 8px rgba(0,0,0,0.4)",
+        transition: "box-shadow 0.25s ease",
+        maxWidth: "220px",
+        width: "100%",
+      }}
+    >
+      <Link
+        href={href}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          padding: "15px 32px",
+          borderRadius: "9999px",
+          background: hovered ? "rgba(30,27,46,0.95)" : "rgba(14,12,28,0.9)",
+          color: "#F0EEF8",
+          fontWeight: 700,
+          fontSize: "15px",
+          letterSpacing: "-0.01em",
+          border: hovered
+            ? "1px solid rgba(124,58,237,0.55)"
+            : "1px solid rgba(124,58,237,0.18)",
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+          transition: "background 0.25s ease, transform 0.2s ease, border-color 0.25s ease",
+          width: "100%",
+          whiteSpace: "nowrap",
+          textDecoration: "none",
+        }}
+      >
+        <span
+          style={{
+            display: "inline-flex",
+            transition: "transform 0.55s ease",
+            transform: hovered ? "rotate(22deg) scale(1.2)" : "rotate(0deg) scale(1)",
+          }}
+        >
+          <SparkleIcon muted={!hovered} />
+        </span>
+        {children}
+      </Link>
+    </div>
   );
 }
