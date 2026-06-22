@@ -37,7 +37,7 @@ function WhatsAppIcon({ size = 22 }: { size?: number }) {
 
 const EMAIL = "zakariatetbirt2@gmail.com";
 const GITHUB_URL = "https://github.com/Zakaria-tet-cs";
-const LINKEDIN_URL = "https://linkedin.com/in/zakaria-tetbirt";
+const LINKEDIN_URL = "https://www.linkedin.com/in/zakaria-tetbirt-/";
 const WHATSAPP_URL = "https://wa.me/213658247107"; // placeholder — update with real number
 
 const availability = [
@@ -64,7 +64,7 @@ const contactMethods = [
   {
     id: "linkedin",
     label: "LinkedIn",
-    value: "https://www.linkedin.com/in/zakaria-tetbirt-",
+    value: "https://www.linkedin.com/in/zakaria-tetbirt-/",
     description: "Connect with me professionally and follow my software engineering journey.",
     actionLabel: "View Profile",
     href: LINKEDIN_URL,

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Work", href: "#work" },
@@ -62,9 +63,9 @@ export default function Navbar() {
           {/* Left Side — Logo */}
           <Link
             href="#hero"
-            className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[rgba(124,58,237,0.15)] border border-[rgba(124,58,237,0.3)] shrink-0 transition-colors hover:bg-[rgba(124,58,237,0.25)]"
+            className="flex items-center justify-center w-[40px] h-[40px] shrink-0 rounded-full overflow-hidden transition-transform hover:scale-105"
           >
-            <span className="font-mono font-bold text-[13px] text-[#7C3AED]">ZT</span>
+            <Image src="/favicon.png" alt="ZT Logo" width={40} height={40} className="w-full h-full object-contain drop-shadow-md" />
           </Link>
 
           {/* Center — Navigation Links (Desktop only) */}
